@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" data-i18n-title="works.title">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work — Krish</title>
+  <meta name="description"
+    content="Développeur créatif spécialisé en interfaces web, animation et design interactif. Découvrez mes projets et réalisations.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.krishportfolio.com/works">
+  <meta property="og:title" content="Work — Krish">
+  <meta property="og:description"
+    content="Développeur créatif spécialisé en interfaces web, animation et design interactif. Découvrez mes projets et réalisations.">
+  <meta property="og:image" content="../assets/images/profile/me.avif">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="../assets/images/profile/me.avif">
+  <meta name="author" content="Krish">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" type="image/x-icon" href="../assets/images/profile/me.avif">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+  <link rel="preload" href="../assets/fonts/Breton.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/Machine.otf" as="font" type="font/otf" crossorigin>
+  <script src="../js/portfolio-data.js"></script>
+  <link rel="stylesheet" href="../styles/works.css">
+</head>
+
+<body>
+
+  <div class="intro-overlay" id="intro-overlay"></div>
+  <div class="page-title" id="page-title">Work</div>
+
+  <h1 class="sr-only" data-i18n="works.h1">Projets — Krish, Creative Developer. Découvrez mes réalisations en
+    développement web, animation et design interactif.</h1>
+
+  <a class="back-btn" id="back-btn" href="../index.html" aria-label="Retour à l'accueil">
+    <span class="chr-hover" data-chr="Back"></span>
+  </a>
+
+  <div class="scroll-hint" id="scroll-hint">Scroll to explore</div>
+
+  <div class="scroll-chevron" id="scroll-chevron">
+    <svg viewBox="0 0 24 24">
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  </div>
+
+  <canvas class="ruler" id="ruler-left"></canvas>
+  <canvas class="ruler" id="ruler-right"></canvas>
+  <div class="counter-wrap" id="counter-wrap">
+    <div class="counter-window">
+      <div class="counter-strip" id="counter-strip"></div>
+    </div>
+  </div>
+
+  <div class="cube-viewport" id="cube-viewport">
+    <div class="cube-scene">
+      <div class="cube" id="cube">
+        <div class="cube-face" data-face="0"></div>
+        <div class="cube-face" data-face="1"></div>
+        <div class="cube-face" data-face="2"></div>
+        <div class="cube-face" data-face="3"></div>
+      </div>
+    </div>
+  </div>
+
+  <script defer src="../js/i18n.js"></script>
+  <script defer src="../js/vendor/gsap.min.js"></script>
+  <script defer src="../js/works.js"></script>
+</body>
+
+</html>

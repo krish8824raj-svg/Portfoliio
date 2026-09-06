@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Template Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles/admin.css">
+  <script src="js/portfolio-data.js"></script>
+</head>
+<body>
+
+  <!-- Login Area -->
+  <div class="login-wrapper" id="login-wrapper">
+    <div class="login-card">
+      <div class="login-header">
+        <h1>Template Editor</h1>
+        <p>Access the dynamic portfolio admin panel</p>
+      </div>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" autocomplete="off" placeholder="Enter username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter password" required>
+        </div>
+        <div class="error-msg" id="login-error">Incorrect username or password.</div>
+        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard Panel Area -->
+  <div class="dashboard-wrapper" id="dashboard-wrapper" style="display: none;">
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h2>Portfolio Configurator</h2>
+        <span class="badge">V3.0 Editor</span>
+      </div>
+      <div class="header-right">
+        <button class="btn btn-secondary" id="btn-logout">Logout</button>
+      </div>
+    </header>
+
+    <div class="dashboard-container">
+      <!-- Tabs Navigation -->
+      <aside class="sidebar">
+        <nav class="tabs-nav">
+          <button class="tab-link active" data-tab="general">General Details</button>
+          <button class="tab-link" data-tab="homepage">Homepage Text</button>
+          <button class="tab-link" data-tab="subpages">Subpages Text</button>
+          <button class="tab-link" data-tab="projects">Projects List</button>
+          <button class="tab-link" data-tab="skills">Skills Matrix</button>
+        </nav>
+        <div class="actions-panel">
+          <button class="btn btn-success btn-block" id="btn-save">Save & Preview</button>
+          <button class="btn btn-primary btn-block" id="btn-download">Download Config File</button>
+          <button class="btn btn-danger btn-block" id="btn-reset">Reset to Defaults</button>
+        </div>
+        <div class="notice-box">
+          <strong>Tip:</strong> After editing, click <strong>Save & Preview</strong> to see changes instantly in another tab. Click <strong>Download Config File</strong> and replace the <code>js/portfolio-data.js</code> inside your project directory to lock the configurations permanently.
+        </div>
+      </aside>
+
+      <!-- Dashboard Contents -->
+      <main class="dashboard-main">
+        <!-- General Details Tab -->
+        <section class="tab-content active" id="tab-general">
+          <h3>General Information</h3>
+          <div class="card">
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label for="client-name">Full Name</label>
+                <input type="text" id="client-name" placeholder="e.g. Krish">
+              </div>
+              <div class="form-group col-6">
+                <label for="client-logo">Preloader Logo Character</label>
+                <input type="text" id="client-logo" maxlength="1" placeholder="e.g. K">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label for="client-first">Preloader First Part</label>
+                <input type="text" id="client-first" placeholder="e.g. rish">
+              </div>
+              <div class="form-group col-6">
+                <label for="client-last">Preloader Last Part</label>
+                <input type="text" id="client-last" placeholder="e.g.  Portfolio">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label for="client-email">Email Address</label>
+                <input type="email" id="client-email" placeholder="e.g. mail@example.com">
+              </div>
+              <div class="form-group col-6">
+                <label for="client-version">Version Identifier</label>
+                <input type="text" id="client-version" placeholder="e.g. V3.0">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label for="client-location">Location</label>
+                <input type="text" id="client-location" placeholder="e.g. India">
+              </div>
+              <div class="form-group col-6">
+                <label for="client-status">Status</label>
+                <input type="text" id="client-status" placeholder="e.g. Available for opportunities">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-4">
+                <label for="client-github">GitHub URL</label>
+                <input type="url" id="client-github" placeholder="https://github.com/username">
+              </div>
+              <div class="form-group col-4">
+                <label for="client-linkedin">LinkedIn URL</label>
+                <input type="url" id="client-linkedin" placeholder="https://linkedin.com/in/username">
+              </div>
+              <div class="form-group col-4">
+                <label for="client-behance">Behance URL</label>
+                <input type="url" id="client-behance" placeholder="https://behance.net/username">
+              </div>
+            </div>
+            <div class="form-row" style="margin-top: 1.2rem; border-top: 1px solid var(--border-color); padding-top: 1.2rem;">
+              <div class="form-group col-6">
+                <label for="client-avatar">Profile Avatar Image Path or Base64</label>
+                <input type="text" id="client-avatar" placeholder="e.g. assets/images/profile/me.avif">
+              </div>
+              <div class="form-group col-6">
+                <label>Upload Avatar File</label>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                  <input type="file" id="upload-avatar" accept="image/*" style="display: none;">
+                  <button type="button" class="btn btn-secondary btn-upload-trigger" data-target="upload-avatar" style="padding: 0.75rem 1.2rem;">Choose Image File</button>
+                  <div id="avatar-preview-wrap" style="display: none; border-radius: 4px; overflow: hidden; border: 1px solid var(--border-color); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: #000;">
+                    <img id="avatar-preview" src="" alt="Avatar Preview" style="max-width: 100%; max-height: 100%; object-fit: cover;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Homepage Content Tab -->
+        <section class="tab-content" id="tab-homepage">
+          <h3>Hero & Reveal Phrases</h3>
+          <div class="card">
+            <div class="form-group">
+              <label for="tagline-en">Landing Page Tagline</label>
+              <textarea id="tagline-en" rows="3" placeholder="Enter landing page tagline..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="reveal-phrase-text">Reveal Phrase (Under Hero Canvas)</label>
+              <input type="text" id="reveal-phrase-text" placeholder="e.g. Basically, I make websites.">
+            </div>
+          </div>
+
+          <h3>About Section</h3>
+          <div class="card">
+            <div class="form-group">
+              <label for="about-en">About Main Description</label>
+              <textarea id="about-en" rows="3" placeholder="Main description displayed on home page..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="about-sub-en">About Sub-Text Description</label>
+              <textarea id="about-sub-en" rows="4" placeholder="Detailed sub-text displayed on home page..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="cg-phrase-text">Circle Gallery Quote Phrase</label>
+              <textarea id="cg-phrase-text" rows="3" placeholder="Quote in circle gallery..."></textarea>
+            </div>
+          </div>
+
+          <h3>Skills Section Header & Description</h3>
+          <div class="card">
+            <div class="form-group">
+              <label for="skills-subtitle">Skills Subtitle</label>
+              <input type="text" id="skills-subtitle" placeholder="e.g. Compétences or Skills">
+            </div>
+            <div class="form-group">
+              <label for="skills-text">Skills Main Description Text</label>
+              <textarea id="skills-text" rows="3" placeholder="e.g. Computer Science student, passionate about web development..."></textarea>
+            </div>
+          </div>
+
+          <h3>Homepage Contact Section Statements</h3>
+          <div class="card">
+            <div class="form-group">
+              <label for="contact-dispo1-text">Contact Opportunity Statement 1</label>
+              <textarea id="contact-dispo1-text" rows="3" placeholder="First paragraph in homepage contact section..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="contact-dispo2-text">Contact Opportunity Statement 2</label>
+              <textarea id="contact-dispo2-text" rows="3" placeholder="Second paragraph in homepage contact section..."></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- Subpages Content Tab -->
+        <section class="tab-content" id="tab-subpages">
+          <h3>Info Page Content</h3>
+          <div class="card">
+            <div class="form-group">
+              <label for="info-role-text">Info Page Role / Subtitle</label>
+              <input type="text" id="info-role-text" placeholder="e.g. Creative developer & student...">
+            </div>
+            <div class="form-group">
+              <label for="info-desc-text">Info Page Full Description</label>
+              <textarea id="info-desc-text" rows="4" placeholder="Description on Info page..."></textarea>
+            </div>
+          </div>
+
+          <h3>Contact Page Content</h3>
+          <div class="card">
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label for="contact-panel-title-text">Left Card Panel Title</label>
+                <input type="text" id="contact-panel-title-text" placeholder="e.g. Let's talk about your project.">
+              </div>
+              <div class="form-group col-6">
+                <label for="contact-delay-text">Average Response Delay</label>
+                <input type="text" id="contact-delay-text" placeholder="e.g. 24h">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contact-panel-copy-text">Left Card Panel Sub-text</label>
+              <textarea id="contact-panel-copy-text" rows="3" placeholder="Description on left card of Contact page..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="contact-headline-title-text">Contact Main Headline Title</label>
+              <input type="text" id="contact-headline-title-text" placeholder="e.g. Let's build together.">
+            </div>
+            <div class="form-group">
+              <label for="contact-role-text">Contact Role / Subtitle</label>
+              <input type="text" id="contact-role-text" placeholder="e.g. Creative developer, focused on animation...">
+            </div>
+            <div class="form-group">
+              <label for="contact-desc-text">Contact Page Description Paragraph</label>
+              <textarea id="contact-desc-text" rows="3" placeholder="Paragraph on Contact page right side..."></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects Manager Tab -->
+        <section class="tab-content" id="tab-projects">
+          <div class="tab-header">
+            <h3>Projects Management</h3>
+            <button class="btn btn-primary" id="btn-add-project">+ Add Project</button>
+          </div>
+          
+          <div class="card" style="margin-bottom: 2rem;">
+            <div class="form-group">
+              <label for="projects-heading">Projects Section Heading</label>
+              <input type="text" id="projects-heading" placeholder="e.g. Work, My Projects">
+            </div>
+          </div>
+          
+          <div class="projects-accordion" id="projects-list-container">
+            <!-- Dynamic project list loaded by admin.js -->
+          </div>
+        </section>
+
+        <!-- Skills Matrix Tab -->
+        <section class="tab-content" id="tab-skills">
+          <h3>Skills & Experience Setup</h3>
+          <div class="card">
+            <div class="form-group">
+              <label for="skills-frontend">Frontend Development (Comma Separated)</label>
+              <textarea id="skills-frontend" rows="3" placeholder="HTML, CSS, JavaScript, React..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="skills-animation">Softwares (Comma Separated)</label>
+              <textarea id="skills-animation" rows="3" placeholder="Photoshop, Figma, Blender..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="skills-experience">Experience (Comma Separated)</label>
+              <textarea id="skills-experience" rows="3" placeholder="Job Title - Company, Freelance Developer..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="client-resume">Resume / CV (File Path or Base64)</label>
+              <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <input type="text" id="client-resume" placeholder="e.g. assets/resume.pdf" style="flex: 1; padding: 0.75rem; border-radius: 4px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.05); color: #fff;">
+                <input type="file" id="upload-resume" accept=".pdf,.doc,.docx" style="display: none;">
+                <button type="button" class="btn btn-secondary btn-upload-trigger" data-target="upload-resume" style="padding: 0.75rem 1.2rem;">Choose File</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal Overlay for Code Export & Copy fallback -->
+  <div id="export-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: var(--card-radius); padding: 2rem; width: 90%; max-width: 650px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); display: flex; flex-direction: column; gap: 1rem; position: relative;">
+      <h3 style="margin: 0; color: var(--primary-color); font-size: 1.3rem;">Export Database Config</h3>
+      <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4; margin: 0;">
+        Browser security policies sometimes block downloading executable <code>.js</code> files directly. We have automatically triggered a download for a safe text file: <strong><code>portfolio-data.js.txt</code></strong>.
+      </p>
+      <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4; margin: 0;">
+        Alternatively, you can click <strong>Copy Code</strong> below to copy it directly, then manually open your project's <code>js/portfolio-data.js</code> and replace its content!
+      </p>
+      
+      <div style="position: relative; flex: 1;">
+        <textarea id="export-code-area" readonly style="width: 100%; height: 280px; font-family: monospace; font-size: 0.8rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; color: #ffb74d; resize: none; outline: none;"></textarea>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 0.5rem;">
+        <button class="btn btn-secondary" id="btn-close-modal">Close</button>
+        <button class="btn btn-success" id="btn-copy-code">Copy Code</button>
+      </div>
+    </div>
+  </div>
+
+  <script defer src="js/admin.js"></script>
+</body>
+</html>

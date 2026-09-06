@@ -1,0 +1,96 @@
+========================================================================
+    HOW TO CUSTOMIZE YOUR PREMIUM PORTFOLIO TEMPLATE (MANUALLY)
+========================================================================
+
+Congratulations! Your portfolio website is fully operational with all the
+original design layouts, high-fidelity WebGL interactive background, 
+dynamic preloader, 3D project cube, customized skill tabs, and 
+beautiful cross-page animations.
+
+To keep your template completely independent and extremely easy to manage
+for multiple clients, all customization variables (names, tags, taglines, 
+emails, social links, skills, and projects) have been centralized inside 
+a SINGLE configuration file:
+👉 `js/portfolio-data.js`
+
+Here is how you can easily customize the template manually:
+
+------------------------------------------------------------------------
+1. HOW TO EDIT TEXTS, SOCIAL LINKS & EMAIL:
+------------------------------------------------------------------------
+Open `js/portfolio-data.js` in any text editor (like Notepad, VS Code).
+You will see a clean, easy-to-understand javascript configuration object:
+- "name": Change this to your client's name.
+- "preloaderLogo", "preloaderFirst", "preloaderLast": Customize the preloader 
+  character animation text (e.g. Logo: "K", First: "rish", Last: " Portfolio").
+- "email": Update with the client's email address (binds to all contact forms).
+- "github", "linkedin", "behance": Update with the client's social profile links.
+- "location": Update with client's base (e.g., "India").
+- "status" / "statusEn": Customize active opportunity statuses (French/English).
+- "taglineFr" / "taglineEn": Customize home tagline texts.
+- "aboutFr" / "aboutEn": Customize main descriptions.
+- "aboutSubFr" / "aboutSubEn": Customize sub-descriptions.
+
+Simply change the text inside the quotation marks (" "), save the file, 
+and refresh the website! All subpages (Works, Info, Contact) will update instantly.
+
+------------------------------------------------------------------------
+2. HOW TO REPLACE PROFILE PICTURE & DECORATIVE IMAGES:
+------------------------------------------------------------------------
+- PROFILE PICTURE (AVATAR):
+  - Your avatar picture is defined by the "avatar" parameter in `js/portfolio-data.js`.
+  - By default, it points to: `assets/images/profile/me.avif`
+  - Simply save your new client photo inside `assets/images/profile/` and update 
+    the "avatar" field in `js/portfolio-data.js` with your new filename (e.g., "assets/images/profile/avatar.png").
+  - Aspect ratio: Portrait works best.
+- CONTACT SECTION ART FRAMES:
+  - Located at `assets/images/art/Untitled1.png` and `Untitled2.png`.
+  - You can replace these image files directly in the directory with identically named PNG files.
+
+------------------------------------------------------------------------
+3. HOW TO MANUALLY CUSTOMIZE PROJECTS:
+------------------------------------------------------------------------
+Inside `js/portfolio-data.js`, search for the `"projects": [` block.
+Each project is defined as an object inside brackets `{ }`. You can edit, 
+add, or remove projects.
+- "id": A unique identifier (e.g., "cyberdiag").
+- "title": Project title (e.g., "CyberDiag App").
+- "date" / "year": Custom mock dates and year strings.
+- "categoryFr" / "categoryEn": The project category labels in French & English.
+- "descFr" / "descEn": Project details and descriptions in French & English.
+- "tags": Comma-separated list of tags used for filters (e.g., ["Gsap", "Three.js"]).
+- "cover": The cover image path. Save your cover image in `assets/images/projects/Covers/` 
+  and type its path in the "cover" field (e.g., "assets/images/projects/Covers/my-project.avif").
+- "images": Array of images to show on the project details page slideshow.
+  (Add file paths one by one inside brackets, e.g. ["path/to/img1.jpg", "path/to/img2.jpg"]).
+
+------------------------------------------------------------------------
+4. HOW TO CUSTOMIZE SKILLS MATRIX:
+------------------------------------------------------------------------
+Inside `js/portfolio-data.js`, search for the `"skills": {` block.
+You can easily add, edit, or remove skills in categories:
+- "frontend": list of frontend technologies (e.g., ["HTML", "CSS", "React"])
+- "animation": list of animation tools (e.g., ["GSAP", "Lenis", "Three.js"])
+- "backend": backend technologies (e.g., ["Node.js", "Express.js", "Python"])
+- "security": systems & tools (e.g., ["Linux", "Bash", "Docker"])
+
+------------------------------------------------------------------------
+5. HOW TO RUN THE WEBSITE LOCALLY:
+------------------------------------------------------------------------
+To preview the interactive WebGL backgrounds, animations, and transitions correctly:
+1. Open the project folder in Visual Studio Code.
+2. Click "Go Live" at the bottom right to run a local web server (requires Live Server extension).
+3. Or run the terminal command inside the folder:
+   `npx http-server`
+   and open the given local address in your web browser.
+
+------------------------------------------------------------------------
+6. DEPLOYING FOR CLIENTS:
+------------------------------------------------------------------------
+Each client gets their own folder. When deploying a website for a client:
+1. Duplicate the template directory.
+2. Edit `js/portfolio-data.js` inside that folder with that client's custom details.
+3. Save their images (avatar, project covers) inside the folder and link them in the data file.
+4. Upload that client's folder to their live server.
+This keeps each website completely static, secure, independent, and extremely fast!
+========================================================================
